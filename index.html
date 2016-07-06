@@ -20,12 +20,6 @@
 </head>
 
 <body>
-    
-    <button id="next">NEXT</button>
-    <button id="prev">PREV</button>
-    <button id="up">UP</button>
-    <button id="down">DOWN</button>
-
 
     <ul>
         <li>li1
@@ -422,114 +416,69 @@
         </li>
     </ul>
 
+
     <script src="jquery-3.0.0.min.js"></script>
     <script>
         $(function () {
-            
-            var next = function () {
-                var activeElement = $('.active');
-                var nextElement = activeElement.next('li');
-                if (nextElement.length > 0) {
-                    activeElement.removeClass('active');
-                    nextElement.addClass('active');
-                }
-            }
-            
-            var prev = function () {
-                var elem = $('.active');
-                var prevElement = elem.prev('li');
-                if (prevElement.length > 0) {
-                    elem.removeClass('active');
-                    prevElement.addClass('active');
-                }
-            }
-            
-            var up = function () {
-                var el = $('.active');
-                var parent = el.parent().parent('li');
-                if (parent.length > 0) {
-                    el.removeClass('active');
-                    parent.addClass('active');
-                }
-            }
-            
-            var down = function () {
-                var chil = $('.active');
-                var children = chil.children().children('li').first();
-                if (chil.length > 0) {
-                    chil.removeClass('active');
-                    children.addClass('active');
-                }
-            }    
-            
-            $('#next').click(next);
-            $('#prev').click(prev);
-            $('#up').click(up);
-            $('#down').click(down);
-            
+            window.focus();
+            $(window).click('focus', function () {
+                console.log('focus!');
+
+                $('body').on('keydown', function (event) {
+                    if (event.which == 37) {
+                        var up = function () {
+                            var el = $('.active'),
+                                parent = el.parent().parent('li');
+                            if (parent.length > 0) {
+                                el.removeClass('active');
+                                parent.addClass('active');
+                            }
+                        }
+                        up();
+                    }
+
+                    if (event.which == 39) {
+                        var down = function () {
+                            var el = $('.active'),
+                                children = el.children().children('li').first();
+                            if (children.length > 0) {
+                                el.removeClass('active');
+                                children.addClass('active');
+                            }
+                        }
+                        down();
+                    }
+
+                    if (event.which == 40) {
+                        var next = function () {
+                            var el = $('.active'),
+                                nextElement = el.next('li');
+                            if (nextElement.length > 0) {
+                                el.removeClass('active');
+                                nextElement.addClass('active');
+                            }
+                        }
+                        next();
+                    }
+
+
+                    if (event.which == 38) {
+                        var prev = function () {
+                            var el = $('.active'),
+                                prevElement = el.prev('li');
+                            if (prevElement.length > 0) {
+                                el.removeClass('active');
+                                prevElement.addClass('active');
+                            }
+                        }
+                        prev();
+                    }
+
+                })
+            })
         });
-        
-        
-        
-        //        $(function () {
-        //            $('.active').on('keydown', function (e) {
-        //                if (e.which == 37) {
-        //                    var up = function () {
-        //                        var el = $('.active');
-        //                        var parent = el.parent().parent('li');
-        //                        if (parent.length > 0) {
-        //                            el.removeClass('active');
-        //                            parent.addClass('active');
-        //                        }
-        //                    }
-        //                }
-        //
-        //            })
-        //
-        //            $('.active').on('keydown', function (e) {
-        //                if (e.which == 38) {
-        //                    var prev = function () {
-        //                        var elem = $('.active');
-        //                        var prevElement = elem.prev('li');
-        //                        if (prevElement.length > 0) {
-        //                            elem.removeClass('active');
-        //                            prevElement.addClass('active');
-        //                        }
-        //                    }
-        //                }
-        //
-        //            })
-        //
-        //            $('.active').on('keydown', function (e) {
-        //                if (e.which == 39) {
-        //                     var down = function () {
-        //                        var chil = $('.active');
-        //                        var children = chil.children().children('li').first();
-        //                        if (chil.length > 0) {
-        //                            chil.removeClass('active');
-        //                            children.addClass('active');
-        //                        }
-        //                    }
-        //                }
-        //
-        //            })
-        //
-        //            $('.active').on('keydown', function (e) {
-        //                if (e.which == 40) {
-        //                    var next = function () {
-        //                        var activeElement = $('.active');
-        //                        var nextElement = activeElement.next('li');
-        //                        if (nextElement.length > 0) {
-        //                            activeElement.removeClass('active');
-        //                            nextElement.addClass('active');
-        //                        }
-        //                    }
-        //                }
-        //
-        //            })
-        //
-        //        });
     </script>
+
 </body>
 
-</html>
+< /html>
